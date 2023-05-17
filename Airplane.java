@@ -2,28 +2,62 @@ package Airplane;
 
 public class Airplane extends Object
 {
-    String description;
-    String title;
-    int capacity;
-    int passengerCompartmentCount;
-    EquipmentCompartment equipmentCompartment;
-    CargoBay[] cargoBays = new CargoBay[3]; 
+    private String description;
+    private String title;
+    private int capacity;
+    private int passengerCompartmentCount;
+    private EquipmentCompartment[] equipmentCompartments;
+    private PassengerCompartment[] passengerCompartments;
+    private CargoBay cargoBay; 
+   
 
-
-    public void process(Employee employee)
+    Airplane(String description, String title, int capacity, int passengerCompartmentCount)
     {
-        employee.workOn(equipmentCompartment);
-        for (CargoBay cargobay : cargoBays)
-            employee.workOn(cargobay);
+        this.description = description;
+        this.title = title;
+        this.capacity = capacity;
+        this.passengerCompartmentCount = passengerCompartmentCount;
+        passengerCompartments = new PassengerCompartment[passengerCompartmentCount];
+        equipmentCompartments = new EquipmentCompartment[3];
+        cargoBay = new CargoBay("CargoBay1", "CargoBay EquipmentCompartment");
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getPassengerCompartmentCount() {
+        return passengerCompartmentCount;
     }
 
     public void readyCheck()
     {
-        equipmentCompartment.readyCheck();
-        for (CargoBay cargobay : cargoBays)
-            cargobay.readyCheck();
+        cargoBay.readyCheck();
+        
+        for (EquipmentCompartment equipmentCompartment : equipmentCompartments)
+            equipmentCompartment.readyCheck();
 
+        for (PassengerCompartment passengerCompartment : passengerCompartments)
+            passengerCompartment.readyCheck();
     }
 
+    public void process(Employee employee)
+    {
+        employee.workOn(cargoBay);
+        for (EquipmentCompartment equipmentCompartment : equipmentCompartments)
+            employee.workOn(equipmentCompartment);
+        for (PassengerCompartment passengerCompartment : passengerCompartments)
+            employee.workOn(passengerCompartment);
+    }
+
+    
 
 }

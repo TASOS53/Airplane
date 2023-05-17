@@ -1,35 +1,16 @@
 package Airplane;
 
-import java.lang.Thread;
-
 public class Main {
 
-    int x[] = new int[99999999];
-
-    public static void main(String[] args) {
-        
-
-            try {
-                System.out.println("About to sleep");
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            
-            Main main = new Main();
-
-            try {
-                System.out.println("About to sleep");
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            System.out.println("Exiting...");
-            
-            
+    public static void main(String[] args)
+    {    
+        Airplane airplane = new Airplane("Airplane_1", "Airbus 737", 100, 1) ;
+        CleaningEmployee cleaningEmployee = new CleaningEmployee("Cleaner");
+        MaintenanceEmployee maintenanceEmployee = new MaintenanceEmployee("Maintainer");
+        SecurityEmployee securityEmployee = new SecurityEmployee("Securitor");
+        airplane.process(cleaningEmployee);
+        airplane.process(securityEmployee);
+        airplane.process(maintenanceEmployee);
+        airplane.readyCheck();
     }
-
-    
 }
