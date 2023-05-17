@@ -8,9 +8,9 @@ public class Main {
         CleaningEmployee cleaningEmployee = new CleaningEmployee("Cleaner");
         MaintenanceEmployee maintenanceEmployee = new MaintenanceEmployee("Maintainer");
         SecurityEmployee securityEmployee = new SecurityEmployee("Securitor");
+        airplane.process(maintenanceEmployee);
         airplane.process(cleaningEmployee);
         airplane.process(securityEmployee);
-        airplane.process(maintenanceEmployee);
         airplane.readyCheck();
     }
 }

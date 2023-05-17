@@ -17,8 +17,18 @@ public class Airplane extends Object
         this.title = title;
         this.capacity = capacity;
         this.passengerCompartmentCount = passengerCompartmentCount;
+        
         passengerCompartments = new PassengerCompartment[passengerCompartmentCount];
+        for (int i=0; i<passengerCompartmentCount; ++i)
+            passengerCompartments[i] = new PassengerCompartment("Airplane PassengerCompartment_" + i);
+
         equipmentCompartments = new EquipmentCompartment[3];
+        for (int i=0; i<3; ++i)
+            equipmentCompartments[i] = new EquipmentCompartment("Airplane EquipmentCompartment_" + i);
+
+        //for (EquipmentCompartment e : equipmentCompartments)  this approach does not work until you initialize each element of the equipementCompartments array first!!!
+        //    e = new EquipmentCompartment("AAA");
+
         cargoBay = new CargoBay("CargoBay1", "CargoBay EquipmentCompartment");
     }
 
@@ -47,6 +57,8 @@ public class Airplane extends Object
 
         for (PassengerCompartment passengerCompartment : passengerCompartments)
             passengerCompartment.readyCheck();
+
+        System.out.println("Airplane ready to take off!");
     }
 
     public void process(Employee employee)
@@ -61,3 +73,4 @@ public class Airplane extends Object
     
 
 }
+
